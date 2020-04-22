@@ -67,9 +67,9 @@ public class Gantt extends PApplet
 
 
 			if(mouseX >= currentX && mouseX < (currentX + w) && mouseY >= currentY &&
-			mouseY < (currentY + h)) // <----
+			mouseY < (currentY + h))
 			{
-				if(s + t >=2 && t < 30)
+				if(t - s > 1 && t < 30)
 				{
 					if(mouseX > (currentX + w/2))
 					{
