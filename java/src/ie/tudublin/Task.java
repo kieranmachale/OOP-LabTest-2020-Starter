@@ -48,7 +48,7 @@ class Task {
 
     public String toString()
     {
-        return taskName + "/t" + start + "/t" + end;
+        return taskName + "\t\t" + start + "\t" + end;
     }
 
     public void renderTasks(PApplet pa)

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Gantt extends PApplet
 {	
 	
-	ArrayList<Task> task = new ArrayList<Task>();
+	
 
 	public void settings()
 	{
@@ -18,6 +18,7 @@ public class Gantt extends PApplet
 	public void setup()
 	{
 		loadTasks();
+		printTasks();
 	}
 
 	public void loadTasks()
@@ -27,16 +28,19 @@ public class Gantt extends PApplet
 		for(TableRow row:t.rows())
 		{
 			Task task = new Task(row);
+			taskArray.add(task);
 		}
 	}
 
 	public void printTasks()
 	{
-		for(Task t:task)
+		for(Task task:taskArray)
 		{
-			System.out.println(t);
+			System.out.println(task);
 		}
 	}
+
+	ArrayList<Task> taskArray = new ArrayList<Task>();
 	
 	public void mousePressed()
 	{
