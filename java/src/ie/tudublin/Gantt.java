@@ -79,8 +79,6 @@ public class Gantt extends PApplet
 		
 	}	
 
-	float rectX;
-	float rectWidth;
 
 	public void displayTasks()
 	{
