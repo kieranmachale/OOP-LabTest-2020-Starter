@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 import processing.data.Table;
+import processing.data.TableRow;
 
 public class Gantt extends PApplet
 {	
@@ -19,6 +20,11 @@ public class Gantt extends PApplet
 	public void loadTasks()
 	{
 		Table t = loadTable("tasks.csv", "header");
+
+		for(TableRow row:t.rows())
+		{
+			Task task = new Task();
+		}
 	}
 
 	public void printTasks()

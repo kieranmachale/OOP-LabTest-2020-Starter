@@ -9,6 +9,13 @@ class Task {
     private int start;
     private int end;
 
+    public Task(TableRow row)
+    {
+        taskName = row.getString("Task");
+        start = row.getInt("Start");
+        end = row.getInt("End");
+    }
+
     public void setName(String taskName)
     {
         this.taskName = taskName;
@@ -37,5 +44,10 @@ class Task {
     public int getEnd()
     {
         return end;
+    }
+
+    public String toString()
+    {
+        return taskName + "/t" + start + "/t" + end;
     }
 }
