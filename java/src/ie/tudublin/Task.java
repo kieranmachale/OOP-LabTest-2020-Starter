@@ -50,4 +50,9 @@ class Task {
     {
         return taskName + "/t" + start + "/t" + end;
     }
+
+    public void renderTasks(PApplet pa)
+    {
+        
+    }
 }

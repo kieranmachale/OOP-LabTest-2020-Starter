@@ -3,10 +3,13 @@ package ie.tudublin;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
+import java.util.ArrayList;
 
 public class Gantt extends PApplet
 {	
 	
+	ArrayList<Task> task = new ArrayList<Task>();
+
 	public void settings()
 	{
 		size(800, 600);
@@ -23,13 +26,16 @@ public class Gantt extends PApplet
 
 		for(TableRow row:t.rows())
 		{
-			Task task = new Task();
+			Task task = new Task(row);
 		}
 	}
 
 	public void printTasks()
 	{
-		
+		for(Task t:task)
+		{
+			System.out.println(t);
+		}
 	}
 	
 	public void mousePressed()
