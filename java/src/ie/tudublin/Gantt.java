@@ -40,19 +40,19 @@ public class Gantt extends PApplet
 
 	ArrayList<Task> taskArray = new ArrayList<Task>();
 	
-	float currentX;
-	float currentY;
-	float border = width * 0.09f;
-	float leftBorder = width * 0.15f;
-	float rightBorder = width * 0.05f;
-	float s, t;
+	float s = 0;
+	float t = 0;
 	boolean taskClicked = false;
 
 	public void mousePressed()
 	{
-		println("Mouse pressed");
 
 		int count = 1;
+		float border = width * 0.09f;
+		float leftBorder = width * 0.15f;
+		float rightBorder = width * 0.05f;
+		float currentX;
+		float currentY;
 
 		for(Task task:taskArray)
 		{	
@@ -64,23 +64,30 @@ public class Gantt extends PApplet
 			float xr = map(t, 1, 30, leftBorder, width - rightBorder);
 			float w = xr - currentX;
 			float h = 40;
-			float halfWidth = currentX + w/2;
+
 
 			if(mouseX >= currentX && mouseX < (currentX + w) && mouseY >= currentY &&
 			mouseY < (currentY + h)) // <----
 			{
-				if(s + t >= 1 && t < 30)
+				if(s + t >=2 && t < 30)
 				{
-					
-					t += 1;
-					task.setEnd((int)t);
+					if(mouseX > (currentX + w/2))
+					{
+						t += 1;
+						task.setEnd((int)t);
 
-					taskClicked = true;
+						taskClicked = true;
+					}
+					else
+					{
+						s += 1;
+						task.setStart((int)s);
 
+						taskClicked = true;
+					}
 				}
 			}
 			count++;
-			
 		}
 		
 	}
@@ -88,8 +95,7 @@ public class Gantt extends PApplet
 
 	public void mouseDragged()
 	{
-		println("Mouse dragged");
-
+		
 		if(taskClicked)
 		{
 			while((s + t >= 1) && t < 30)

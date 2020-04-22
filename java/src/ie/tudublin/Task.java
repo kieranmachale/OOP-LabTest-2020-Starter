@@ -15,6 +15,13 @@ class Task {
         end = row.getInt("End");
     }
 
+    public Task(String taskName, int start, int end)
+    {
+        this.taskName = taskName;
+        this.start = start;
+        this.end = end;
+    }
+
     public void setName(String taskName)
     {
         this.taskName = taskName;
