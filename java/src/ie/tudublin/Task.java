@@ -1,6 +1,5 @@
 package ie.tudublin;
 
-import processing.core.PApplet;
 import processing.data.TableRow;
 
 class Task {
@@ -48,11 +47,7 @@ class Task {
 
     public String toString()
     {
-        return taskName + "\t\t" + start + "\t" + end;
+        return taskName + "\t" + start + "\t" + end;
     }
 
-    public void renderTasks(PApplet pa)
-    {
-        
-    }
 }

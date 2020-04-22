@@ -52,14 +52,67 @@ public class Gantt extends PApplet
 		println("Mouse dragged");
 	}
 
+
 	public void drawBarChart()
 	{
+		
+		float leftBorder = width * 0.15f;
+		float rightBorder = width * 0.05f;
 
+		for(int i = 1; i <= 30; i++)
+		{
+			float x = map(i, 1, 30, leftBorder, width - rightBorder);
+
+			if(i % 2 == 0)
+			{
+				stroke(100);
+			}
+			else
+			{
+				stroke(255);
+			}
+			line(x, rightBorder, x, height - rightBorder);
+			textAlign(CENTER,CENTER);
+			text(i, x, rightBorder - 10);
+		}
+		
+	}	
+
+	float rectX;
+	float rectWidth;
+
+	public void displayTasks()
+	{
+		float border = width * 0.09f;
+		float leftBorder = width * 0.15f;
+		float rightBorder = width * 0.05f;
+		float x,y,w,h;
+		
+		int count = 1;
+
+		for(Task task: taskArray)
+		{
+			x = map(task.getStart(), 1, 30, leftBorder, width - rightBorder);
+			w = map(task.getEnd(), 1, 30, leftBorder, width - rightBorder); //fix this
+			h = 40;
+			y = map(count ,1, 9,border, height - border);
+
+			textAlign(CENTER,CENTER);
+			noFill();
+			stroke(255);
+			text(task.getName(), border, y);
+			count++;
+
+			stroke(255);
+			fill(255);
+			rect(x, y - 20, w, h);		
+		}
 	}
 	
 	public void draw()
 	{			
 		background(0);
 		drawBarChart();
+		displayTasks();
 	}
 }
