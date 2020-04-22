@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class Gantt extends PApplet
 {	
 	
-	
-
 	public void settings()
 	{
 		size(800, 600);
@@ -42,9 +40,37 @@ public class Gantt extends PApplet
 
 	ArrayList<Task> taskArray = new ArrayList<Task>();
 	
+	float currentX;
+	float currentY;
+	float border = width * 0.09f;
+	float leftBorder = width * 0.15f;
+	float rightBorder = width * 0.05f;
+	int count = 1;
+
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
+		println("Mouse pressed");
+
+		for(Task task:taskArray)
+		{	
+			float s = task.getStart();
+			float t = task.getEnd();
+
+			currentX = map(s, 1, 30, leftBorder, width - rightBorder);
+			currentY = map(count, 1, 9, border, height - border); // problem
+			float xr = map(t, 1, 30, leftBorder, width - border);
+			float w = currentX - xr;
+			float h = 40;
+
+			if(mouseX >= currentX && mouseX < (currentX + w) && mouseY >= currentY &&
+			mouseY < (currentY + h))
+			{
+				System.out.println(task.getName());
+			}
+			count++;
+			
+		}
+		
 	}
 
 	public void mouseDragged()
@@ -107,8 +133,8 @@ public class Gantt extends PApplet
 			text(task.getName(), border, y);
 			count++;
 
-			stroke(y % 255, 255,255);
 			colorMode(HSB);
+			stroke(y % 255, 255,255);
 			fill(y % 255,255,255);
 			rect(x, y - 20, w, h);		
 
