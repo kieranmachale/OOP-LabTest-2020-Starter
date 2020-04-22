@@ -45,27 +45,39 @@ public class Gantt extends PApplet
 	float border = width * 0.09f;
 	float leftBorder = width * 0.15f;
 	float rightBorder = width * 0.05f;
-	int count = 1;
+	float s, t;
+	boolean taskClicked = false;
 
 	public void mousePressed()
 	{
 		println("Mouse pressed");
 
+		int count = 1;
+
 		for(Task task:taskArray)
 		{	
-			float s = task.getStart();
-			float t = task.getEnd();
+			s = task.getStart();
+			t = task.getEnd();
 
 			currentX = map(s, 1, 30, leftBorder, width - rightBorder);
-			currentY = map(count, 1, 9, border, height - border); // problem
-			float xr = map(t, 1, 30, leftBorder, width - border);
-			float w = currentX - xr;
+			currentY = map(count, 1, 9, border, height - border) - 20;
+			float xr = map(t, 1, 30, leftBorder, width - rightBorder);
+			float w = xr - currentX;
 			float h = 40;
+			float halfWidth = currentX + w/2;
 
 			if(mouseX >= currentX && mouseX < (currentX + w) && mouseY >= currentY &&
-			mouseY < (currentY + h))
+			mouseY < (currentY + h)) // <----
 			{
-				System.out.println(task.getName());
+				if(s + t >= 1 && t < 30)
+				{
+					
+					t += 1;
+					task.setEnd((int)t);
+
+					taskClicked = true;
+
+				}
 			}
 			count++;
 			
@@ -73,9 +85,18 @@ public class Gantt extends PApplet
 		
 	}
 
+
 	public void mouseDragged()
 	{
 		println("Mouse dragged");
+
+		if(taskClicked)
+		{
+			while((s + t >= 1) && t < 30)
+			{
+				
+			}
+		}
 	}
 
 
@@ -134,7 +155,7 @@ public class Gantt extends PApplet
 			count++;
 
 			colorMode(HSB);
-			stroke(y % 255, 255,255);
+			stroke(y % 255, 255, 255);
 			fill(y % 255,255,255);
 			rect(x, y - 20, w, h);		
 
