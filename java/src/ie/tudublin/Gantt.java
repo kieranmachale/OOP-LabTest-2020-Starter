@@ -72,6 +72,7 @@ public class Gantt extends PApplet
 				stroke(255);
 			}
 			line(x, rightBorder, x, height - rightBorder);
+			fill(255);
 			textAlign(CENTER,CENTER);
 			text(i, x, rightBorder - 10);
 		}
@@ -103,13 +104,14 @@ public class Gantt extends PApplet
 			y = map(count ,1, 9,border, height - border);
 
 			textAlign(CENTER,CENTER);
-			noFill();
 			stroke(255);
+			fill(255);
 			text(task.getName(), border, y);
 			count++;
 
-			stroke(255);
-			fill(255);
+			stroke(y % 255, 255,255);
+			colorMode(HSB);
+			fill(y % 255,255,255);
 			rect(x, y - 20, w, h);		
 
 		}
