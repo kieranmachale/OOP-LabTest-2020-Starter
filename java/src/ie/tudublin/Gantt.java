@@ -11,6 +11,11 @@ public class Gantt extends PApplet
 		size(800, 600);
 	}
 
+	public void setup()
+	{
+		loadTasks();
+	}
+
 	public void loadTasks()
 	{
 		Table t = loadTable("tasks.csv", "header");
@@ -31,14 +36,14 @@ public class Gantt extends PApplet
 		println("Mouse dragged");
 	}
 
-	
-	
-	public void setup() 
+	public void drawBarChart()
 	{
+
 	}
 	
 	public void draw()
 	{			
 		background(0);
+		drawBarChart();
 	}
 }
