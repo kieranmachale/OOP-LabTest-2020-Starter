@@ -86,14 +86,19 @@ public class Gantt extends PApplet
 		float border = width * 0.09f;
 		float leftBorder = width * 0.15f;
 		float rightBorder = width * 0.05f;
-		float x,y,w,h;
+		float x,y,w,h,xr;
 		
 		int count = 1;
 
 		for(Task task: taskArray)
 		{
-			x = map(task.getStart(), 1, 30, leftBorder, width - rightBorder);
-			w = map(task.getEnd(), 1, 30, leftBorder, width - rightBorder); //fix this
+
+			float s = task.getStart();
+			float t = task.getEnd();
+			
+			x = map(s, 1, 30, leftBorder, width - rightBorder);
+			xr = map(t, 1, 30, leftBorder, width - rightBorder); 
+			w = xr - x;
 			h = 40;
 			y = map(count ,1, 9,border, height - border);
 
@@ -106,7 +111,9 @@ public class Gantt extends PApplet
 			stroke(255);
 			fill(255);
 			rect(x, y - 20, w, h);		
+
 		}
+		
 	}
 	
 	public void draw()
